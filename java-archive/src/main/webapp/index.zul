@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="Food database v.0.1" contentType="text/html;charset=UTF-8"?>
+<zk>
+<hbox pack="left" align="top" width="100%" height="100%">
+<style src="simplecombobox.css" />
+    <div apply="org.zkoss.bind.BindComposer" height="278px" width="443px"
+        viewModel="@id('vm') @init('FoodDatabase.FoodServiceImpl')">
+        
+	<window id="win" title="Super awesome Food database" width="800px" border="normal"
+		apply="FoodDatabase.FoodController">
+		<hbox width="100%" pack="left">
+			<label id="First" multiline="false"><attribute name="value">Det här är en databas med mat. Du kan lägga till, importera, hämta och lista objekt.</attribute></label>
+		</hbox>
+		<hbox width="100%" pack="left">
+			<label id="Info" multiline="false"><attribute name="value">Klicka på en knapp för att göra något eller på en maträtt för att få mer info och uppdatera.</attribute></label>
+		</hbox>
+		<separator/>
+		<hbox width="100%" pack="left">
+        	<!--<label value="Under construction.." />-->        	
+        	<!--<button id="rmAllBtn" width="115px" label="Delete All"
+                disabled="@load(empty vm.mailData.mails)" onClick="@command('deleteAllMail')" />-->
+        </hbox>
+        <separator/>
+        <hbox width="100%" pack="left">
+        	<label value="Söksträng: " />
+        	<textbox id="txBoxSearchString"/>
+        	<label value="Snabblagat: " class="boxlabel"/>
+        	<checkbox id="chBoxQuick" width="150px"/>
+        	<button id="listAllButton" label="Sök"/><!-- onClick="@command('listItems')"/>-->
+        	<button id="randomItemBtn" label="Hämta slumpvis maträtt"/>
+        </hbox>
+        <separator/>
+        <separator/>
+        <hbox width="100%" pack="left" visible="false">
+        	<label value="Typ av maträtt: " class="boxlabel"/>
+        	<combobox id="cBoxCategory" width="150px"
+        	model="@load(vm.categories)">
+                   <!-- <template name="model">
+                        <comboitem label="@load(each)"
+                            image="@load(vm.getIconImage(each))" />
+                    </template>-->
+            </combobox>
+            <label value="Typ av rätt: " class="boxlabel"/>
+        	<combobox id="cBoxTypeOfMeal" width="150px"
+        		model="@load(vm.typeOfMeals)">
+            </combobox>
+        	<label value="Betyg min: " class="boxlabel"/>
+        	<combobox id="cBoxGrade" width="150px" model="@load(vm.grades)"/> <!-- onChange="@command('FoodDatabase.FoodController.gradeChanged')"/>-->
+        </hbox>
+        <separator/>
+        <hbox width="100%" pack="left" visible="false">
+        	<label value="Tillfälle: " class="boxlabel"/>
+        	<combobox id="cBoxOccasion" width="150px"
+        		model="@load(vm.occasions)">
+            </combobox>
+            <button id="cleanButton" label="Rensa filter"/>
+        </hbox>
+        <separator/>
+        
+ 	
+        <separator bar="true" height="20px"/>
+        <separator/>
+        <hbox width="100%" pack="Left">
+        	<label value="Lägg till objekt: " />        	
+        	<button id="addItemBtn" label="Lägg till maträtt"/>
+        	<button id="uploadCsvBtn" label="Importera csv-fil"/>
+        </hbox>
+       	<separator/>
+       	<separator/>
+            
+		<!-- Read from java code -->
+		<!--<label id="message" style="font-style:italic;" multiline="true" />
+		<zscript>
+			import localdomain.localhost.gui_project.Test;
+			Test test = new Test();
+			String teststring = test.getString();
+			message.value=teststring;
+		</zscript>-->	
+
+
+		<vlayout id="listAll" visible="true">
+        	<grid model="${win$composer.foodItemsModel}">
+        	<!--<grid model="FoodDatabase.FoodItem">-->
+            	<columns> <!-- menupopup="auto">-->
+	                <column label="Maträtt" align="center" sort="auto(foodName)"/>
+					<!--<column label="Kategori" align="center" sort="auto(category)"/>
+	                <column label="Typ av rätt" align="center" sort="auto(typeOfMeal)"/>-->
+	                <column label="Beskrivning" align="center" sort="auto(foodComment)"/>
+            	</columns>
+            	<template name="model">
+	                <row popup="detail_${each.food.id}, position=end_before" style="cursor:pointer">
+                    	<div>
+	                        <label value="${each.food.foodName}" />
+                        	<popup id="detail_${each.food.id}">
+	                            <include src="food_detail.zul"
+                                	foodItem="${each}" />
+                        	</popup>
+                    	</div>
+                    	<!--<label value="${each.food.category}" />
+                    	<label value="${each.food.typeOfMeal}" />-->
+                    	<label value="${each.food.foodComment}" />
+                	</row>
+            	</template>
+        	</grid>
+        	<!--Total Price: ${win$composer.totalPrice}
+        	<checkbox id="tosCheckbox" label=" I have read and accepted the terms of service." />
+        	<hbox width="100%" pack="center">
+	            <button id="submitButton" label="Submit" />
+    	        <button id="cancelButton" label="Cancel" />
+	        </hbox>-->
+    	</vlayout>
+
+
+	</window>
+	</div>
+	</hbox>
+</zk>

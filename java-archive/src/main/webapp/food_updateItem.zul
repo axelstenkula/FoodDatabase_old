@@ -1,0 +1,75 @@
+<window id="updateItemWin" title="Update maträtt" width="300px" border="normal"
+    apply="FoodDatabase.ResultController">
+    <label value="Uppdatera objekt" style="font-size: 14px; font-weight: bold;" />
+    <style src="simplecombobox.css" />
+    <div apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('FoodDatabase.FoodServiceImpl')">
+    
+    <grid>
+        <rows>
+        	<row visible="false">
+                <textbox visible="false" id="txBoxId" value="${arg.FoodItem.food.id}"/>
+            </row>
+            <row>
+                Maträtt:
+                <textbox id="txBoxFoodName" value="${arg.FoodItem.food.foodName}"/>
+            </row>
+            <row>
+                Kategori:
+                <combobox id="cBoxCategory" width="130px"
+        			model="@load(vm.categories)" value="${arg.FoodItem.food.category}">
+            	</combobox>
+            </row>
+            <row>
+                Tidsåtgång (min):
+                <textbox id="txBoxTimeMinutes" value="${arg.foodItem.food.timeMinutes == -1? '' : arg.foodItem.food.timeMinutes}" />
+            </row>
+            <row>
+                Tillfälle:
+                <combobox id="cBoxOccasion" width="130px"
+        			model="@load(vm.occasions)" value="${arg.FoodItem.food.occasion}">
+            	</combobox>
+            </row>
+           	<row>
+                Typ av rätt:
+                <combobox id="cBoxTypeOfMeal" width="130px"
+        			model="@load(vm.typeOfMeals)" value="${arg.FoodItem.food.typeOfMeal}">
+            	</combobox>
+            </row>
+           	<row>
+                Tillbehör:
+                <textbox id="txBoxSideDish" value="${arg.FoodItem.food.sideDish}" />
+            </row>
+           	<row>
+                Kommentar:
+                <textbox id="txBoxFoodComment" value="${arg.FoodItem.food.foodComment}" />
+            </row>
+            <row>
+                Bild:
+                <textbox id="txBoxImage" value="${arg.FoodItem.food.imageString}"/>
+            </row>
+           	<row>	
+                Länk:
+                <textbox id="txBoxLink" value="${arg.FoodItem.food.link}"/>
+            </row>
+            <row>
+                Betyg (1-5):
+                <textbox id="txBoxGrade" value="${arg.FoodItem.food.grade == -1? '' : arg.FoodItem.food.grade}" />
+            </row>
+            
+			<row>
+				<checkbox checked="${arg.FoodItem.food.isVegan}" />
+			</row>
+			
+            <row visible="false">
+                <textbox visible="false" id="txBoxNumberOfSelections" value="${arg.FoodItem.food.numberOfSelections}"/>
+            </row>
+        </rows>
+    </grid>
+    </div>
+    <hbox width="100%" pack="center">
+        <button id="updateItemBtn" label="Uppdatera objekt" />
+        <button id="deleteItemBtn" label="Ta bort objekt" />
+        <button id="cancelBtn" label="Avbryt" />
+    </hbox>
+</window>

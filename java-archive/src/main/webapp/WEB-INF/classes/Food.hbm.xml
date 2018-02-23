@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="FoodDatabase.Food" table="FOOD">
+      <meta attribute="class-description">
+         This class contains the food detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="foodName" column="foodName" type="string"/>
+      <property name="timeMinutes" column="timeMinutes" type="int"/>
+      <property name="occasion" column="occasion" type="string"/>
+      <property name="category" column="category" type="string"/>
+      <property name="typeOfMeal" column="typeOfMeal" type="string"/>
+      <property name="sideDish" column="sideDish" type="string"/>
+      <property name="foodComment" column="foodComment" type="string"/>
+      <property name="link" column="link" type="string"/>
+      <property name="imageString" column="imageString" type="string"/>
+      <property name="grade" column="grade" type="int"/>
+      <property name="numberOfSelections" column="numberOfSelections" type="int"/>
+      <property name="isDeleted" column="isDeleted" type="boolean"/>
+   </class>
+</hibernate-mapping>

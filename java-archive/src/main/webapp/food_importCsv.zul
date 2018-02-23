@@ -1,0 +1,10 @@
+<window id="uploadCsvWin" title="Ladda upp csv-fil" width="500px" border="normal"
+    apply="FoodDatabase.UploadCsvController">
+    <hbox width="100%" pack="center">
+    	<label value="Ange sökväg: " style="font-size: 14px; font-weight: bold;" />
+    	<textbox id="txtBox" />
+        <button id="uploadButton" label="Ladda upp" />
+        <button id="cancelButton" label="Avbryt" />
+        <label id="lblResult" style="font-size: 14px; font-weight: bold;" />
+    </hbox>
+</window>

@@ -1,0 +1,83 @@
+<vlayout id="popup" width="300px" apply="FoodDatabase.ResultController">
+    <label value="${foodItem.food.foodName}" style="font-size: 14px; font-weight: bold;" />
+    <grid>
+        <rows>
+            <row visible="false">
+                <textbox visible="false" id="txBoxId" value="${foodItem.food.id}"/>
+            </row>
+            <row>
+                Kategori:
+                <label value="${foodItem.food.category}" />
+            </row>
+            <row>
+                Tidsåtgång (min):
+                <label value="${foodItem.food.timeMinutes == -1? '' : foodItem.food.timeMinutes}" />
+            </row>
+            <row>
+                Tillfälle:
+                <label value="${foodItem.food.occasion}" />
+            </row>
+           	<row>
+                Typ av rätt:
+                <label value="${foodItem.food.typeOfMeal}" />
+            </row>
+           	<row>
+                Tillbehör:
+                <label value="${foodItem.food.sideDish}" />
+            </row>
+           	<row>
+                Kommentar:
+                <label value="${foodItem.food.foodComment}" />
+            </row>
+            <row>
+                Bild:
+                <!--<image src="${foodItem.food.image}" />-->
+                <!--<image content="${foodItem.food.image} @converter('FoodDatabase.ImageToZkImageConverter')" />-->
+                <image content="@load(foodItem.food.image) @converter('FoodDatabase.ImageToZkImageConverter')" />
+            </row>
+           	<row>	
+                Länk:
+                
+                <!--<if test="${foodItem.food.link.isEmpty()}">-->
+				    
+                <a href="${foodItem.food.link}" label="Link"/>
+                <!--<label value="${foodItem.food.link}" />-->
+                <!--</if>-->
+                
+            </row>
+            <row>
+                Betyg (1-5):
+                <label value="${foodItem.food.grade == -1? '' : foodItem.food.grade}" />
+            </row>
+	       	<row>
+                Antalet lagade gånger:
+                <label value="${foodItem.food.numberOfSelections}" />
+            </row>
+            <row>
+				<checkbox checked="${foodItem.food.isVegan}" />
+			</row>
+            
+	
+            
+            <!--<row>
+                Origin:
+                <hbox align="center">
+                    <label value="${foodItem.food.country}" />
+                    <image src="/widgets/getting_started/img/${foodItem.food.country}.png" />
+                </hbox>
+            </row>
+            <row>
+                Transmission:
+                <hbox align="center">
+                    <image
+                        src="/widgets/getting_started/img/${foodItem.food.autoTransmission ? 'at' : 'mt'}.png" />
+                    <label value="${foodItem.food.autoTransmission ? 'AT' : 'MT'}" />
+                </hbox>
+            </row>-->
+        </rows>
+    </grid>
+    <hbox width="100%" pack="center">
+        <!--<button id="closeButton" label="Close" />-->
+        <button id="updateBtn" label="Uppdatera objekt"/>
+    </hbox>
+</vlayout>

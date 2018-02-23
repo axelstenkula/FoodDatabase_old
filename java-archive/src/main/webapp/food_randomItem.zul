@@ -1,0 +1,71 @@
+<window id="resultWin" title="Slumpvis valt objekt" width="500px" border="normal"
+    apply="FoodDatabase.ResultController">
+    <grid>
+        <rows>
+            <row visible="false">
+                <textbox visible="false" id="txBoxId" value="${arg.RandomFoodItem.food.id}"/>
+            </row>
+            <row>
+                Maträtt:
+                <label value="${arg.RandomFoodItem.food.foodName}" />
+            </row>
+            <row>
+                Typ av rätt:
+                <label value="${arg.RandomFoodItem.food.category}" />
+            </row>
+            <row>
+                Tidsåtgång (min):
+                <label value="${arg.RandomFoodItem.food.timeMinutes == -1? '' : arg.RandomFoodItem.food.timeMinutes}" />
+            </row>
+            <row>
+                Tillfälle:
+                <label value="${arg.RandomFoodItem.food.occasion}" />
+            </row>
+           	<row>
+                Typ av rätt:
+                <label value="${arg.RandomFoodItem.food.typeOfMeal}" />
+            </row>
+           	<row>
+                Tillbehör:
+                <label value="${arg.RandomFoodItem.food.sideDish}" />
+            </row>
+           	<row>
+                Kommentar:
+                <label value="${arg.RandomFoodItem.food.foodComment}" />
+            </row>
+            <row>
+                Bild:
+                <!--<image src="${arg.RandomFoodItem.food.image}" />-->
+                <!--<image content="${foodItem.food.image} @converter('FoodDatabase.ImageToZkImageConverter')" />-->
+                <image content="@load(arg.RandomFoodItem.food.image) @converter('FoodDatabase.ImageToZkImageConverter')" />
+            </row>
+           	<row>	
+                Länk:
+                
+                <!--<if test="${arg.RandomFoodItem.food.link.isEmpty()}">-->
+				    
+                <a href="${arg.RandomFoodItem.food.link}" label="Link"/>
+                <!--<label value="${foodItem.food.link}" />-->
+                <!--</if>-->
+                
+            </row>
+            <row>
+                Betyg (1-5):
+                <label value="${arg.RandomFoodItem.food.grade == -1? '' : arg.RandomFoodItem.food.grade}" />
+            </row>
+            <row>
+                Antalet lagade gånger:
+                <label value="${arg.RandomFoodItem.food.numberOfSelections}" />
+            </row>
+            
+			<row>
+				<checkbox checked="${arg.RandomFoodItem.food.isVegan}" />
+			</row>
+        </rows>
+    </grid>
+    <hbox width="100%" pack="center">
+        <button id="closeButton" label="Stäng" />
+        <button id="selectButton" label="Välj och uppdatera antalet lagade gånger" />
+        <button id="generateNew" label="Slumpa fram nytt objekt" visible="false"/>
+    </hbox>
+</window>
